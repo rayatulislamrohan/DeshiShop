@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopBD – Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --green:#1a3a2a; --ivory:#f5f0e8; --red:#c0392b; }
+    *{box-sizing:border-box;}
+    body { background:var(--ivory); color:var(--green); font-family:'Source Sans 3',sans-serif; margin:0; }
+    h1,h2,h3,h4,h5,.brand { font-family:'Playfair Display',serif; }
+
+    /* TOP BAR */
+    .top-bar { background:var(--green); color:rgba(245,240,232,.8); font-size:.82rem; padding:6px 0; }
+    .top-bar a { color:rgba(245,240,232,.8); text-decoration:none; margin-left:16px; }
+    .top-bar a:hover { color:var(--red); }
+
+    /* NAVBAR */
+    .navbar { background:#fff; border-bottom:2px solid rgba(26,58,42,.1); padding:10px 0; }
+    .navbar-brand { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--green)!important; font-weight:700; }
+    .navbar-brand span { color:var(--red); }
+    .search-box { display:flex; border:2px solid var(--green); border-radius:4px; overflow:hidden; max-width:400px; flex:1; }
+    .search-box input { border:none; outline:none; padding:7px 14px; flex:1; font-size:.95rem; }
+    .search-box button { background:var(--green); color:#fff; border:none; padding:7px 16px; cursor:pointer; }
+    .search-box button:hover { background:var(--red); }
+    .cart-btn { background:var(--red); color:#fff!important; border-radius:4px; padding:7px 18px!important; font-weight:600; text-decoration:none; }
+    .cart-btn:hover { background:#a93226; }
+
+    /* MENU BAR */
+    .menu-bar { background:var(--green); }
+    .menu-bar .nav-link { color:rgba(245,240,232,.85)!important; font-weight:600; padding:10px 18px!important; }
+    .menu-bar .nav-link:hover,.menu-bar .nav-link.active { color:#fff!important; background:var(--red); }
+
+    /* SLIDER */
+    .carousel-item { height:420px; background:var(--green); display:flex; align-items:center; }
+    .slide-content { padding:60px; color:var(--ivory); }
+    .slide-content h2 { font-size:2.5rem; margin-bottom:1rem; }
+    .slide-content p { font-size:1.1rem; opacity:.85; margin-bottom:1.5rem; }
+    .slide1 { background:linear-gradient(135deg, #1a3a2a 60%, #2d6a4f); }
+    .slide2 { background:linear-gradient(135deg, #c0392b 60%, #e74c3c); }
+    .slide3 { background:linear-gradient(135deg, #1a3a2a 40%, #c0392b); }
+    .carousel-indicators [data-bs-target] { background-color:var(--red); }
+    .carousel-control-prev-icon,.carousel-control-next-icon { filter:none; background-color:var(--red); border-radius:50%; padding:20px; }
+
+    /* SECTION */
+    .section-title { font-size:1.8rem; border-left:5px solid var(--red); padding-left:14px; margin-bottom:1.5rem; }
+
+    /* PRODUCT CARD */
+    .product-card { background:#fff; border:1.5px solid rgba(26,58,42,.12); border-radius:6px; overflow:hidden; transition:box-shadow .2s,transform .2s; height:100%; }
+    .product-card:hover { box-shadow:0 6px 24px rgba(26,58,42,.14); transform:translateY(-4px); }
+    .product-card img { width:100%; height:200px; object-fit:cover; }
+    .product-card .card-body { padding:16px; }
+    .product-card .price { font-size:1.1rem; font-weight:700; color:var(--red); }
+    .product-card .old-price { font-size:.85rem; text-decoration:line-through; color:#aaa; margin-left:6px; }
+    .badge-best { background:var(--red); color:#fff; font-size:.7rem; padding:3px 8px; border-radius:2px; }
+    .badge-new { background:var(--green); color:var(--ivory); font-size:.7rem; padding:3px 8px; border-radius:2px; }
+    .btn-cart { background:var(--green); color:#fff; border:none; padding:7px 0; border-radius:4px; width:100%; font-weight:600; margin-top:8px; transition:background .2s; cursor:pointer; }
+    .btn-cart:hover { background:var(--red); }
+    .btn-wish { background:transparent; border:1.5px solid var(--green); color:var(--green); padding:7px 12px; border-radius:4px; margin-top:8px; cursor:pointer; transition:.2s; }
+    .btn-wish:hover { background:var(--green); color:#fff; }
+
+    /* FOOTER */
+    .footer-top { background:var(--green); color:var(--ivory); padding:50px 0 30px; }
+    .footer-top h5 { color:var(--ivory); border-bottom:2px solid var(--red); padding-bottom:8px; margin-bottom:16px; }
+    .footer-top a { color:rgba(245,240,232,.7); text-decoration:none; display:block; margin-bottom:6px; font-size:.9rem; }
+    .footer-top a:hover { color:var(--red); }
+    .footer-bottom { background:#111e17; color:rgba(245,240,232,.5); padding:14px 0; text-align:center; font-size:.85rem; }
+    .red-divider { height:3px; background:var(--red); border:none; margin:0; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <span><i class="fa-solid fa-truck me-1"></i>Free delivery on orders over ৳999</span>
+    <div>
+      <a href="login.html"><i class="fa-solid fa-user me-1"></i>My Account</a>
+      <a href="#"><i class="fa-solid fa-heart me-1"></i>Wish List</a>
+      <a href="login.html"><i class="fa-solid fa-right-to-bracket me-1"></i>Login</a>
+      <a href="signup.html"><i class="fa-solid fa-user-plus me-1"></i>Register</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container d-flex align-items-center gap-3 flex-wrap">
+    <a class="navbar-brand" href="index.html">Shop<span>BD</span></a>
+    <div class="search-box flex-grow-1">
+      <input type="text" placeholder="Search for products..."/>
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <a href="#" class="cart-btn"><i class="fa-solid fa-cart-shopping me-1"></i>Cart <span class="badge bg-light text-danger ms-1">3</span></a>
+  </div>
+</nav>
+
+<!-- MENU BAR -->
+<nav class="menu-bar">
+  <div class="container">
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fa-solid fa-house me-1"></i>Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="products.html"><i class="fa-solid fa-store me-1"></i>Products</a></li>
+      <li class="nav-item"><a class="nav-link" href="product-detail.html"><i class="fa-solid fa-tag me-1"></i>Product Detail</a></li>
+      <li class="nav-item"><a class="nav-link" href="signup.html"><i class="fa-solid fa-user-plus me-1"></i>Signup</a></li>
+      <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa-solid fa-right-to-bracket me-1"></i>Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SLIDER / BANNER -->
+<div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active slide1">
+      <div class="slide-content">
+        <p style="color:var(--red);font-weight:700;letter-spacing:2px;font-size:.85rem;text-transform:uppercase">New Arrivals 2026</p>
+        <h2>Fresh Fashion<br>For Everyone</h2>
+        <p>Discover the latest trends at unbeatable prices.</p>
+        <a href="products.html" class="btn btn-outline-light me-2">Shop Now</a>
+        <a href="products.html" class="btn" style="background:var(--red);color:#fff">Best Sellers</a>
+      </div>
+    </div>
+    <div class="carousel-item slide2">
+      <div class="slide-content">
+        <p style="color:#fff;font-weight:700;letter-spacing:2px;font-size:.85rem;text-transform:uppercase">Limited Offer</p>
+        <h2>Up to 50% Off<br>Electronics</h2>
+        <p>Grab the best deals on phones, laptops & more.</p>
+        <a href="products.html" class="btn btn-outline-light me-2">Shop Now</a>
+      </div>
+    </div>
+    <div class="carousel-item slide3">
+      <div class="slide-content">
+        <p style="color:var(--ivory);font-weight:700;letter-spacing:2px;font-size:.85rem;text-transform:uppercase">Weekend Sale</p>
+        <h2>Home & Kitchen<br>Essentials</h2>
+        <p>Everything you need for your home at the best prices.</p>
+        <a href="products.html" class="btn btn-outline-light me-2">Explore</a>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<hr class="red-divider"/>
+
+<!-- BEST SELLERS -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-fire me-2" style="color:var(--red)"></i>Best Sellers</h2>
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/1a3a2a/f5f0e8?text=T-Shirt" alt="T-Shirt"/>
+          <div class="card-body">
+            <span class="badge-best">Best Seller</span>
+            <h6 class="mt-1 mb-1">Classic Cotton T-Shirt</h6>
+            <div><span class="price">৳ 450</span><span class="old-price">৳ 700</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/c0392b/f5f0e8?text=Headphones" alt="Headphones"/>
+          <div class="card-body">
+            <span class="badge-best">Best Seller</span>
+            <h6 class="mt-1 mb-1">Wireless Headphones</h6>
+            <div><span class="price">৳ 2,200</span><span class="old-price">৳ 3,500</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/1a3a2a/f5f0e8?text=Sneakers" alt="Sneakers"/>
+          <div class="card-body">
+            <span class="badge-best">Best Seller</span>
+            <h6 class="mt-1 mb-1">Running Sneakers</h6>
+            <div><span class="price">৳ 1,800</span><span class="old-price">৳ 2,800</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/c0392b/f5f0e8?text=Watch" alt="Watch"/>
+          <div class="card-body">
+            <span class="badge-best">Best Seller</span>
+            <h6 class="mt-1 mb-1">Smart Watch Pro</h6>
+            <div><span class="price">৳ 4,500</span><span class="old-price">৳ 6,000</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="red-divider"/>
+
+<!-- NEW PRODUCTS -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-star me-2" style="color:var(--red)"></i>New Products</h2>
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/1a3a2a/f5f0e8?text=Backpack" alt="Backpack"/>
+          <div class="card-body">
+            <span class="badge-new">New</span>
+            <h6 class="mt-1 mb-1">Urban Backpack</h6>
+            <div><span class="price">৳ 1,200</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/c0392b/f5f0e8?text=Sunglasses" alt="Sunglasses"/>
+          <div class="card-body">
+            <span class="badge-new">New</span>
+            <h6 class="mt-1 mb-1">UV Sunglasses</h6>
+            <div><span class="price">৳ 650</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/1a3a2a/f5f0e8?text=Perfume" alt="Perfume"/>
+          <div class="card-body">
+            <span class="badge-new">New</span>
+            <h6 class="mt-1 mb-1">Royal Perfume 100ml</h6>
+            <div><span class="price">৳ 980</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="product-card">
+          <img src="https://placehold.co/400x300/c0392b/f5f0e8?text=Mug" alt="Mug"/>
+          <div class="card-body">
+            <span class="badge-new">New</span>
+            <h6 class="mt-1 mb-1">Ceramic Coffee Mug</h6>
+            <div><span class="price">৳ 320</span></div>
+            <div class="d-flex gap-2">
+              <button class="btn-cart flex-grow-1"><i class="fa-solid fa-cart-plus me-1"></i>Add to Cart</button>
+              <button class="btn-wish"><i class="fa-solid fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-top">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3">
+        <h5 style="font-family:'Playfair Display',serif">Shop<span style="color:var(--red)">BD</span></h5>
+        <p style="color:rgba(245,240,232,.7);font-size:.9rem">Your trusted online shopping destination in Bangladesh.</p>
+      </div>
+      <div class="col-md-3">
+        <h5>Quick Links</h5>
+        <a href="index.html"><i class="fa-solid fa-chevron-right me-1"></i>Home</a>
+        <a href="products.html"><i class="fa-solid fa-chevron-right me-1"></i>Products</a>
+        <a href="signup.html"><i class="fa-solid fa-chevron-right me-1"></i>Register</a>
+        <a href="login.html"><i class="fa-solid fa-chevron-right me-1"></i>Login</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Categories</h5>
+        <a href="products.html">Fashion</a>
+        <a href="products.html">Electronics</a>
+        <a href="products.html">Home & Kitchen</a>
+        <a href="products.html">Sports</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Contact</h5>
+        <p style="color:rgba(245,240,232,.7);font-size:.9rem">
+          <i class="fa-solid fa-envelope me-2" style="color:var(--red)"></i>info@shopbd.com<br>
+          <i class="fa-solid fa-phone me-2" style="color:var(--red)"></i>+880 1700-000000<br>
+          <i class="fa-solid fa-location-dot me-2" style="color:var(--red)"></i>Dhaka, Bangladesh
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">© 2026 ShopBD — All rights reserved.</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
